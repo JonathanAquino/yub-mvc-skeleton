@@ -35,10 +35,11 @@ class Dispatcher {
      * @return array  a controller class name and action method name
      */
     protected function parse($url) {
-        if ($url == '/') {
-            return array('WelcomeController', 'action_show');
+        if ($url == '/public/index.php') {
+            header('Location: /public/index.php/welcome/show', true, 302);
+            exit();
         }
-        if (!preg_match('!^/([^/?]+)/([^/?]+)!', $url, $matches)) {
+        if (!preg_match('!^/public/index.php/([^/?]+)/([^/?]+)!', $url, $matches)) {
             throw new Exception('Could not parse URL ' . $url);
         }
         return array(ucfirst($matches[1]) . 'Controller', 'action_' . $matches[2]);

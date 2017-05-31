@@ -12,6 +12,7 @@ class CommandService {
      * @return string  the current date, e.g., 2005-02-04 20:39:14
      */
     public function getDate($time = null) {
+        date_default_timezone_set('UTC');
         $time = $time ? $time : time();
         return date('Y-m-d H:i:s', $time);
     }
